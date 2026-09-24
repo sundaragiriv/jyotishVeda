@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Jyotisha Veda design tokens
+   Light: warm parchment + ink + saffron-gold.  Dark: night sky indigo.
+   ------------------------------------------------------------------ */
+:root {
+  --bg: #f8f4ec;
+  --surface: #fffdf8;
+  --surface-2: #f1ebdf;
+  --line: #e2d8c6;
+  --ink: #1d1a16;
+  --ink-2: #5a5247;
+  --ink-3: #8a8072;
+  --accent: #a8641a;          /* saffron-gold, text-safe on --bg */
+  --accent-soft: #f3e3c8;
+  --chart-line: #6b5a44;
+  --chart-fill: #fffaf0;
+  --lagna: #b4471f;
+  --benefic: #2f6b4f;
+  --malefic: #9c3b2b;
+  --focus: #b86e1f;
+  --danger: #a33a2a;
+  --kalam: #c9602f;
+  --kalam-soft: #f4d9c9;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0f22;
+    --surface: #151833;
+    --surface-2: #1c2042;
+    --line: #2c3160;
+    --ink: #efe8da;
+    --ink-2: #bdb4a3;
+    --ink-3: #8c8676;
+    --accent: #e5b560;
+    --accent-soft: #2e2a3f;
+    --chart-line: #8d86b8;
+    --chart-fill: #151833;
+    --lagna: #f08a5d;
+    --benefic: #7fc8a0;
+    --malefic: #ef8a78;
+    --focus: #e5b560;
+    --danger: #ff8f7d;
+    --kalam: #f08a5d;
+    --kalam-soft: #3a2a35;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d0f22;
+  --surface: #151833;
+  --surface-2: #1c2042;
+  --line: #2c3160;
+  --ink: #efe8da;
+  --ink-2: #bdb4a3;
+  --ink-3: #8c8676;
+  --accent: #e5b560;
+  --accent-soft: #2e2a3f;
+  --chart-line: #8d86b8;
+  --chart-fill: #151833;
+  --lagna: #f08a5d;
+  --benefic: #7fc8a0;
+  --malefic: #ef8a78;
+  --focus: #e5b560;
+  --danger: #ff8f7d;
+  --kalam: #f08a5d;
+  --kalam-soft: #3a2a35;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-danger: var(--danger);
+  --font-sans: "Inter Variable", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-deva: "Noto Sans Devanagari", "Inter Variable", sans-serif;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1, "cv11" 1;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.field {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  color: var(--ink);
+  min-height: 44px;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 25%, transparent);
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  margin-bottom: 0.3rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 150ms ease, transform 100ms ease, opacity 150ms;
+}
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover:not(:disabled) { background: color-mix(in srgb, var(--ink) 85%, var(--accent)); }
+.btn-ghost { background: transparent; color: var(--ink-2); border: 1px solid var(--line); }
+.btn-ghost:hover { background: var(--surface-2); color: var(--ink); }
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 3px;
+  background: var(--surface-2);
+}
+.seg button {
+  min-height: 34px;
+  padding: 0 0.8rem;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+.seg button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
