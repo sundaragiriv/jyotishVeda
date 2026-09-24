@@ -17,7 +17,9 @@ engine/
   tools/jhd_audit.py        import + cross-check a folder of .jhd files
 api/main.py                 /v1/health, /v1/chart, /v1/panchang, /v1/import/jhd, /v1/places
 api/places.py               place search (GeoNames, lat/lon + IANA time zone)
-web/                        Jyotisha Veda (Next.js 16, TypeScript, Tailwind 4)
+docs/design/                Workbench design reference + build spec (next build target)
+docs/ENGINE_BACKLOG.md      engine additions for the Workbench, with golden values
+web/                        Jyotisha Veda (Next.js 16, TypeScript, Tailwind 4) — v0 UI, to be replaced
   app/page.tsx              Chart: birth form, two chart panels (any of D1–D60),
                             South/North style, English/Sanskrit labels,
                             graha table, Vimshottari timeline

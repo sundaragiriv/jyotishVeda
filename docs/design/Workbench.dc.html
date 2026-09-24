@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jyotisha Veda workbench</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Hind:wght@400;500;600&amp;family=Tiro+Devanagari+Sanskrit&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#090A1F;font-family:Hind,sans-serif;color:#E9E3D6}
+a{color:#F2A33A}a:hover{color:#F6C27A}
+button{font-family:Hind,sans-serif}
+</style>
+</helmet>
+<div style="width: 1920px; height: 1080px; box-sizing: border-box; background: #090A1F; display: flex; flex-direction: column; overflow: hidden; font-size: 13px">
+
+  <div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; gap: 16px; padding: 0 14px; border-bottom: 1px solid #262A5C; background: #0D0F2B">
+    <div style="display: flex; align-items: baseline; gap: 8px; width: 210px">
+      <span style="font-family: 'Tiro Devanagari Sanskrit', serif; font-size: 20px; color: #F2A33A">ज्यो</span>
+      <span style="font-family: Fraunces, serif; font-size: 18px; font-weight: 600">Jyotisha Veda</span>
+    </div>
+    <div role="tablist" aria-label="Open charts" style="display: flex; gap: 4px">
+      <button role="tab" aria-selected="true" style="height: 32px; padding: 0 12px; border: 1px solid #3A3F86; border-radius: 8px; background: #1A1D4A; color: #F3ECDD; font-size: 13px; font-weight: 600">Sample · Kanya lagna</button>
+      <button role="tab" aria-selected="false" style="height: 32px; padding: 0 12px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: #9A94B3; font-size: 13px">Vivekananda · Dhanu</button>
+      <button aria-label="Open another chart" style="width: 32px; height: 32px; border: 1px dashed #3A3F86; border-radius: 8px; background: transparent; color: #9A94B3; font-size: 16px">+</button>
+    </div>
+    <div style="flex-grow: 1; display: flex; justify-content: center">
+      <label style="width: 560px; height: 32px; box-sizing: border-box; padding: 0 12px; border: 1px solid #3A3F86; border-radius: 8px; background: #11133A; display: flex; align-items: center; gap: 10px; color: #9A94B3">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+        <input aria-label="Command" placeholder="Jump to a varga, house, graha or date — try “D10”, “10th lord”, “Shani transit 2027”" style="flex-grow: 1; border: 0; outline: none; background: transparent; color: #E9E3D6; font-family: Hind, sans-serif; font-size: 13px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 2px 6px; border: 1px solid #3A3F86; border-radius: 4px">⌘K</span>
+      </label>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center">
+      <div style="height: 30px; padding: 0 10px; border-radius: 8px; background: #11133A; border: 1px solid #262A5C; display: flex; align-items: center; color: #B9B3C9">Lahiri 23°43′48″ · Mean node · Whole sign</div>
+      <div style="height: 30px; padding: 0 10px; border-radius: 8px; background: #2A2211; border: 1px solid #5A4B1E; display: flex; align-items: center; color: #F4C542; font-weight: 500">Transit cursor · 24 Sep 2026 12:10</div>
+    </div>
+  </div>
+
+  <div style="height: 788px; flex-shrink: 0; display: flex; gap: 12px; padding: 12px; box-sizing: border-box">
+
+    <section aria-label="Charts" style="width: 430px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px">
+      <div style="padding: 12px; border-radius: 12px; background: #11133A; border: 1px solid #262A5C; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <div style="font-weight: 600; font-size: 14px">D1 · Rasi <span style="color: #9A94B3; font-weight: 400">· Kanya lagna</span></div>
+          <div role="group" aria-label="Chart style" style="display: flex; padding: 2px; border-radius: 7px; background: #0D0F2B; border: 1px solid #262A5C">
+            <button aria-pressed="true" style="height: 24px; padding: 0 10px; border: 0; border-radius: 5px; background: #2E3270; color: #F3ECDD; font-size: 12px">South</button>
+            <button aria-pressed="false" style="height: 24px; padding: 0 10px; border: 0; border-radius: 5px; background: transparent; color: #9A94B3; font-size: 12px">North</button>
+          </div>
+        </div>
+        <div style="width: 406px; height: 406px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); border: 1px solid #3A3F86; border-radius: 6px; overflow: hidden">
+          <sc-for list="{{d1}}" as="c" hint-placeholder-count="12">
+            <div style="grid-row: {{c.r}}; grid-column: {{c.c}}; border: 0.5px solid #2E3270; background: {{c.bg}}; position: relative; padding: 16px 5px 4px 6px; display: flex; flex-direction: column; gap: 1px">
+              <div style="position: absolute; top: 3px; left: 6px; font-size: 10px; color: #6F6A8A">{{c.name}}</div>
+              <div style="position: absolute; top: 3px; right: 6px; font-size: 10px; color: {{c.houseColor}}; font-weight: 600">{{c.house}}</div>
+              <sc-for list="{{c.bodies}}" as="b" hint-placeholder-count="1">
+                <button onClick="{{b.pick}}" aria-pressed="{{b.selected}}" style="display: flex; align-items: center; gap: 4px; padding: 1px 3px; border: 1px solid {{b.ring}}; border-radius: 4px; background: {{b.bg}}; color: #CFC8DA; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-align: left; cursor: pointer">
+                  <span style="width: 5px; height: 5px; border-radius: 3px; background: {{b.digColor}}; flex-shrink: 0"></span>
+                  <span style="color: {{b.gem}}; font-weight: 600">{{b.a}}<span style="color: #F2917A; font-size: 8px; vertical-align: super">{{b.retro}}</span></span><span>{{b.deg}}</span><span style="color: #8E89A6">{{b.nak}}</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-for>
+          <div style="grid-row: 2 / span 2; grid-column: 2 / span 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: #0D0F2B; border: 0.5px solid #2E3270">
+            <div style="font-family: Fraunces, serif; font-size: 20px">Rasi · D1</div>
+            <div style="font-size: 12px; color: #9A94B3">15 Aug 1990 · 10:00 IST</div>
+            <div style="font-size: 12px; color: #9A94B3">Hyderabad</div>
+            <div style="display: flex; gap: 6px; padding-top: 8px; font-size: 10px; color: #9A94B3">
+              <span style="display: flex; align-items: center; gap: 3px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #F4C542"></span>Ex</span>
+              <span style="display: flex; align-items: center; gap: 3px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #2FBF8A"></span>Own</span>
+              <span style="display: flex; align-items: center; gap: 3px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #9FD8B8"></span>Fr</span>
+              <span style="display: flex; align-items: center; gap: 3px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #F2917A"></span>En</span>
+              <span style="display: flex; align-items: center; gap: 3px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #E23D57"></span>Db</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px">
+        <sc-for list="{{minis}}" as="m" hint-placeholder-count="2">
+          <div style="padding: 10px; border-radius: 12px; background: #11133A; border: 1px solid #262A5C; display: flex; flex-direction: column; gap: 6px">
+            <div style="font-weight: 600">{{m.title}} <span style="color: #9A94B3; font-weight: 400">{{m.sub}}</span></div>
+            <div style="width: 187px; height: 187px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); border: 1px solid #3A3F86; border-radius: 5px; overflow: hidden">
+              <sc-for list="{{m.cells}}" as="c" hint-placeholder-count="12">
+                <div style="grid-row: {{c.r}}; grid-column: {{c.c}}; border: 0.5px solid #2E3270; background: {{c.bg}}; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 1px 5px; padding: 2px">
+                  <sc-for list="{{c.bodies}}" as="b" hint-placeholder-count="1">
+                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: {{b.gem}}; text-decoration: {{b.underline}}">{{b.a}}</span>
+                  </sc-for>
+                </div>
+              </sc-for>
+              <div style="grid-row: 2 / span 2; grid-column: 2 / span 2; display: flex; align-items: center; justify-content: center; background: #0D0F2B; font-family: Fraunces, serif; font-size: 15px">{{m.center}}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Strength and positions" style="width: 700px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px">
+      <div style="padding: 12px 14px; border-radius: 12px; background: #11133A; border: 1px solid #262A5C; display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <div style="font-weight: 600; font-size: 14px">Varga dignity matrix <span style="color: #9A94B3; font-weight: 400">· every graha in all 16 vargas at once</span></div>
+          <div style="font-size: 11px; color: #9A94B3">Ex/Own count of 16</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 74px repeat(16, minmax(0, 1fr)) 56px; gap: 2px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px">
+          <div></div>
+          <sc-for list="{{vargaHeads}}" as="h" hint-placeholder-count="16"><div style="text-align: center; color: #9A94B3; padding-bottom: 2px">{{h}}</div></sc-for>
+          <div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <sc-for list="{{matrix}}" as="row" hint-placeholder-count="10">
+            <div style="display: grid; grid-template-columns: 74px repeat(16, minmax(0, 1fr)) 56px; gap: 2px; align-items: stretch; border-radius: 4px; background: {{row.bg}}; outline: 1px solid {{row.ring}}">
+              <button onClick="{{row.pick}}" style="height: 24px; border: 0; background: transparent; text-align: left; padding: 0 4px; color: {{row.gem}}; font-size: 12px; font-weight: 600; cursor: pointer">{{row.name}}</button>
+              <sc-for list="{{row.cells}}" as="x" hint-placeholder-count="16">
+                <div title="{{x.title}}" style="height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 3px; background: {{x.bg}}; color: {{x.fg}}; font-family: 'JetBrains Mono', monospace; font-size: 10.5px">{{x.r}}</div>
+              </sc-for>
+              <div style="display: flex; align-items: center; justify-content: flex-end; gap: 4px; padding-right: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px">
+                <span style="color: #F7D774">{{row.strong}}</span><span style="color: #6F6A8A">/</span><span style="color: #FF9AAA">{{row.weak}}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size: 11px; color: #9A94B3">No graha is vargottama · Guru exalted in D1–D4 and D20 · Shukra debilitated in D9, D20, D30</div>
+      </div>
+
+      <div style="flex-grow: 1; border-radius: 12px; background: #11133A; border: 1px solid #262A5C; overflow: hidden; display: flex; flex-direction: column">
+        <div style="padding: 10px 14px 6px 14px; font-weight: 600; font-size: 14px">Graha details</div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 12.5px">
+          <thead>
+            <tr style="color: #9A94B3; font-size: 11px; text-align: left">
+              <th scope="col" style="padding: 5px 14px; font-weight: 500">Graha</th>
+              <th scope="col" style="padding: 5px 6px; font-weight: 500; text-align: right">Longitude</th>
+              <th scope="col" style="padding: 5px 6px; font-weight: 500">Nakshatra · pada</th>
+              <th scope="col" style="padding: 5px 6px; font-weight: 500">Nak lord</th>
+              <th scope="col" style="padding: 5px 6px; font-weight: 500; text-align: right">House</th>
+              <th scope="col" style="padding: 5px 6px; font-weight: 500">Lord of</th>
+              <th scope="col" style="padding: 5px 6px; font-weight: 500">Dignity</th>
+              <th scope="col" style="padding: 5px 6px; font-weight: 500">Karaka</th>
+              <th scope="col" style="padding: 5px 14px; font-weight: 500; text-align: right">Speed °/d</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{table}}" as="t" hint-placeholder-count="10">
+              <tr style="border-top: 1px solid #1E2152; background: {{t.bg}}">
+                <th scope="row" style="padding: 2px 10px; text-align: left"><button onClick="{{t.pick}}" style="height: 26px; padding: 0 4px; border: 0; background: transparent; font-size: 12.5px; font-weight: 600; color: {{t.gem}}; cursor: pointer">{{t.name}}</button></th>
+                <td style="padding: 6px; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 11.5px">{{t.lon}}</td>
+                <td style="padding: 6px">{{t.nak}}</td>
+                <td style="padding: 6px; color: #B9B3C9">{{t.nl}}</td>
+                <td style="padding: 6px; text-align: right">{{t.house}}</td>
+                <td style="padding: 6px; color: #B9B3C9">{{t.lordOf}}</td>
+                <td style="padding: 6px; color: {{t.digColor}}">{{t.dig}}</td>
+                <td style="padding: 6px; color: #B9B3C9">{{t.karaka}}</td>
+                <td style="padding: 6px 14px; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: {{t.speedColor}}">{{t.speed}}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-label="Bhava lens" style="width: 360px; flex-shrink: 0; padding: 12px 14px; box-sizing: border-box; border-radius: 12px; background: #11133A; border: 1px solid #262A5C; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <div style="font-weight: 600; font-size: 14px">Bhava lens</div>
+        <div style="font-size: 11px; color: #9A94B3">shortcut: H, then 1–12</div>
+      </div>
+      <div role="tablist" aria-label="Houses" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px">
+        <sc-for list="{{houses}}" as="h" hint-placeholder-count="12">
+          <button role="tab" aria-selected="{{h.on}}" style="height: 28px; border: 1px solid {{h.ring}}; border-radius: 5px; background: {{h.bg}}; color: {{h.fg}}; font-family: 'JetBrains Mono', monospace; font-size: 11px">{{h.n}}</button>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <div style="font-family: Fraunces, serif; font-size: 22px">10th · Karma bhava</div>
+        <div style="color: #9A94B3">Career, status, action in the world</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 8px; background: #0D0F2B">
+        <div style="font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #9A94B3">In the rasi chart</div>
+        <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 5px 8px">
+          <div style="color: #9A94B3">Sign</div><div>Mithuna · no grahas</div>
+          <div style="color: #9A94B3">Lord</div><div><button onClick="{{picks.Budha}}" style="border: 0; padding: 0; background: transparent; color: #2FBF8A; font-weight: 600; font-size: 13px; cursor: pointer">Budha</button> (also lagna lord) in 12th · Simha 25°26′ · friend’s sign</div>
+          <div style="color: #9A94B3">Aspected by</div><div><button onClick="{{picks.Shani}}" style="border: 0; padding: 0; background: transparent; color: #7F97F5; font-weight: 600; font-size: 13px; cursor: pointer">Shani</button> from the 4th (7th aspect)</div>
+          <div style="color: #9A94B3">Karakas</div><div>Surya · Budha · Guru · Shani</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 8px; background: #0D0F2B">
+        <div style="font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #9A94B3">In the D10 · Dasamsa</div>
+        <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 5px 8px">
+          <div style="color: #9A94B3">D10 lagna</div><div>Makara · with Mangala, Rahu</div>
+          <div style="color: #9A94B3">D10 10th</div><div>Tula · empty; lord Shukra in own sign</div>
+          <div style="color: #9A94B3">Budha</div><div>Mesha, with Guru</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 8px; background: #0D0F2B">
+        <div style="font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #9A94B3">Timing</div>
+        <div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 5px 8px">
+          <div style="color: #9A94B3">Last</div><div>Guru–Budha antardasha · Oct 2023 – Jan 2026</div>
+          <div style="color: #9A94B3">Next</div><div style="color: #F4C542">Budha pratyantar · 18 Nov 2026 – 5 Jan 2027</div>
+          <div style="color: #9A94B3">Transits</div><div>No slow graha in Mithuna now · Guru left it 1 Jun 2026</div>
+        </div>
+      </div>
+
+      <div style="margin-top: auto; display: flex; gap: 6px; flex-wrap: wrap">
+        <button style="height: 30px; padding: 0 10px; border: 1px solid #3A3F86; border-radius: 7px; background: transparent; color: #E9E3D6; font-size: 12px">Pin to report</button>
+        <button style="height: 30px; padding: 0 10px; border: 1px solid #3A3F86; border-radius: 7px; background: transparent; color: #E9E3D6; font-size: 12px">Open D10 full</button>
+        <button style="height: 30px; padding: 0 10px; border: 1px solid #3A3F86; border-radius: 7px; background: transparent; color: #E9E3D6; font-size: 12px">Compare with 7th</button>
+      </div>
+    </section>
+
+    <section aria-label="Synthesis" style="width: 370px; flex-shrink: 0; padding: 12px 14px; box-sizing: border-box; border-radius: 12px; background: linear-gradient(180deg, #16193F 0%, #11133A 100%); border: 1px solid #3A3F86; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <div style="font-weight: 600; font-size: 14px">Synthesis</div>
+        <div style="font-size: 11px; color: #9A94B3">every line cites chart evidence</div>
+      </div>
+
+      <div style="padding: 10px; border-radius: 8px; background: #0D0F2B; border-left: 0; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 600; color: #F4C542">Maha parivartana yoga · 9th ↔ 11th</div>
+        <div style="color: #CFC8DA; line-height: 1.4">The 9th lord and the 11th lord sit in each other’s signs, linking fortune and gains.</div>
+        <div style="display: flex; gap: 4px; flex-wrap: wrap">
+          <button onClick="{{picks.Shukra}}" style="height: 22px; padding: 0 7px; border: 1px solid #3A3F86; border-radius: 11px; background: transparent; color: #D6E6FF; font-size: 11px; cursor: pointer">Shukra 9L · Karka</button>
+          <button onClick="{{picks.Chandra}}" style="height: 22px; padding: 0 7px; border: 1px solid #3A3F86; border-radius: 11px; background: transparent; color: #EDE6D6; font-size: 11px; cursor: pointer">Chandra 11L · Vrishabha</button>
+        </div>
+      </div>
+
+      <div style="padding: 10px; border-radius: 8px; background: #0D0F2B; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 600">Two exalted grahas in 9th and 11th</div>
+        <div style="color: #CFC8DA; line-height: 1.4">Chandra exalted in the 9th, Guru exalted in the 11th; Guru holds exaltation in D1 through D4.</div>
+        <div style="display: flex; gap: 4px; flex-wrap: wrap">
+          <button onClick="{{picks.Chandra}}" style="height: 22px; padding: 0 7px; border: 1px solid #3A3F86; border-radius: 11px; background: transparent; color: #EDE6D6; font-size: 11px; cursor: pointer">Chandra · 9th · Ex</button>
+          <button onClick="{{picks.Guru}}" style="height: 22px; padding: 0 7px; border: 1px solid #3A3F86; border-radius: 11px; background: transparent; color: #F4C542; font-size: 11px; cursor: pointer">Guru · 11th · Ex</button>
+        </div>
+      </div>
+
+      <div style="padding: 10px; border-radius: 8px; background: #0D0F2B; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 600">Lagna and 10th lord in the 12th</div>
+        <div style="color: #CFC8DA; line-height: 1.4">Budha rules both the self and career and sits in the 12th, unaspected.</div>
+        <div style="display: flex; gap: 4px; flex-wrap: wrap">
+          <button onClick="{{picks.Budha}}" style="height: 22px; padding: 0 7px; border: 1px solid #3A3F86; border-radius: 11px; background: transparent; color: #2FBF8A; font-size: 11px; cursor: pointer">Budha 1L+10L · 12th</button>
+        </div>
+      </div>
+
+      <div style="padding: 10px; border-radius: 8px; background: #0D0F2B; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-weight: 600">Shukra weak in the Navamsa</div>
+        <div style="color: #CFC8DA; line-height: 1.4">Enemy’s sign in D1 and debilitated in D9 — the karaka of partnership needs a closer look.</div>
+        <div style="display: flex; gap: 4px; flex-wrap: wrap">
+          <button onClick="{{picks.Shukra}}" style="height: 22px; padding: 0 7px; border: 1px solid #3A3F86; border-radius: 11px; background: transparent; color: #D6E6FF; font-size: 11px; cursor: pointer">Shukra · D9 Kanya · Db</button>
+        </div>
+      </div>
+
+      <div style="padding: 10px; border-radius: 8px; background: #2A2211; border: 1px solid #5A4B1E; display: flex; flex-direction: column; gap: 4px">
+        <div style="font-weight: 600; color: #F4C542">Ahead</div>
+        <div style="color: #E9E3D6; line-height: 1.4">Rahu transit returns to Makara on 5 Dec 2026. Shani enters Mesha on 2 Jun 2027 (UTC): Sade Sati begins.</div>
+      </div>
+
+      <label style="margin-top: auto; height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #3A3F86; border-radius: 8px; background: #0D0F2B; display: flex; align-items: center; color: #9A94B3">
+        <input aria-label="Ask about this chart" placeholder="Ask about this chart…" style="flex-grow: 1; border: 0; outline: none; background: transparent; color: #E9E3D6; font-family: Hind, sans-serif; font-size: 13px">
+      </label>
+    </section>
+  </div>
+
+  <section aria-label="Time ribbon" style="flex-grow: 1; margin: 0 12px 12px 12px; border-radius: 12px; background: #11133A; border: 1px solid #262A5C; position: relative; overflow: hidden">
+    <div style="position: absolute; left: 14px; top: 8px; font-weight: 600; font-size: 14px">Time ribbon <span style="color: #9A94B3; font-weight: 400">· dashas and transits on one clock · Jan 2026 – Dec 2028</span></div>
+    <div style="position: absolute; left: 0; top: 32px; width: 1896px; height: 196px">
+      <sc-for list="{{ticks}}" as="k" hint-placeholder-count="12">
+        <div style="position: absolute; left: {{k.x}}px; top: 0; height: 172px; border-left: 1px solid #1E2152"></div>
+        <div style="position: absolute; left: {{k.x}}px; top: 174px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6F6A8A; padding-left: 3px">{{k.label}}</div>
+      </sc-for>
+      <sc-for list="{{tracks}}" as="tr" hint-placeholder-count="7">
+        <div style="position: absolute; left: 14px; top: {{tr.y}}px; height: 20px; display: flex; align-items: center; font-size: 11.5px; color: #9A94B3">{{tr.label}}</div>
+        <sc-for list="{{tr.segs}}" as="s" hint-placeholder-count="3">
+          <div title="{{s.title}}" style="position: absolute; left: {{s.x}}px; width: {{s.w}}px; top: {{s.y}}px; height: 20px; box-sizing: border-box; border-radius: 4px; background: {{s.bg}}; border: 1px solid {{s.ring}}; color: {{s.fg}}; font-size: 11px; display: flex; align-items: center; padding-left: 5px; overflow: hidden; white-space: nowrap">{{s.label}}</div>
+        </sc-for>
+      </sc-for>
+      <div style="position: absolute; left: 560px; top: -4px; height: 178px; border-left: 2px solid #F3ECDD"></div>
+      <div style="position: absolute; left: 548px; top: -8px; width: 24px; height: 8px; border-radius: 4px; background: #F3ECDD"></div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1920,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 'Budha' };
+  }
+
+  renderVals() {
+    var self = this;
+    var sel = this.state.sel;
+    var GEM = { Lagna: '#F2A33A', Surya: '#E23D57', Chandra: '#EDE6D6', Mangala: '#F2704F', Budha: '#2FBF8A',
+      Guru: '#F4C542', Shukra: '#D6E6FF', Shani: '#7F97F5', Rahu: '#CB7A3E', Ketu: '#A7B36B' };
+    var AB = { Lagna: 'As', Surya: 'Su', Chandra: 'Mo', Mangala: 'Ma', Budha: 'Me', Guru: 'Ju', Shukra: 'Ve', Shani: 'Sa', Rahu: 'Ra', Ketu: 'Ke' };
+    var DIG = {
+      EX: { bg: 'rgba(244,197,66,.28)', fg: '#F7D774', dot: '#F4C542', label: 'Exalted' },
+      OW: { bg: 'rgba(47,191,138,.28)', fg: '#7FE3BC', dot: '#2FBF8A', label: 'Own sign' },
+      FR: { bg: 'rgba(47,191,138,.10)', fg: '#BFE8D4', dot: '#9FD8B8', label: 'Friend' },
+      NE: { bg: 'transparent', fg: '#9A94B3', dot: '#6F6A8A', label: 'Neutral' },
+      EN: { bg: 'rgba(242,145,122,.14)', fg: '#F2B3A3', dot: '#F2917A', label: 'Enemy' },
+      DB: { bg: 'rgba(226,61,87,.32)', fg: '#FF9AAA', dot: '#E23D57', label: 'Debilitated' },
+      '--': { bg: 'transparent', fg: '#C9C3D8', dot: '#6F6A8A', label: '' }
+    };
+    var pick = function (g) { return function () { self.setState({ sel: g }); }; };
+    var picks = {};
+    Object.keys(GEM).forEach(function (g) { picks[g] = pick(g); });
+
+    // South Indian layout: rasi index -> [row, col]
+    var POS = [[1,2],[1,3],[1,4],[2,4],[3,4],[4,4],[4,3],[4,2],[4,1],[3,1],[2,1],[1,1]];
+    var RN = ['Mesha','Vrishabha','Mithuna','Karka','Simha','Kanya','Tula','Vrischika','Dhanu','Makara','Kumbha','Meena'];
+    var LAGNA = 5, LENS = 10;
+
+    // D1: rasi, degree text, nakshatra-pada, dignity (from the engine)
+    var D1 = [
+      ['Lagna', 5, '24°44', 'Chi1', '--'], ['Surya', 3, '28°22', 'Asl4', 'FR'], ['Chandra', 1, '18°38', 'Roh3', 'EX'],
+      ['Mangala', 0, '27°28', 'Kri1', 'OW'], ['Budha', 4, '25°26', 'PPh4', 'FR'], ['Guru', 3, '05°36', 'Pus1', 'EX'],
+      ['Shukra', 3, '07°49', 'Pus2', 'EN'], ['Shani', 8, '26°09', 'PAs4', 'NE'], ['Rahu', 9, '12°45', 'Shr1', '--'], ['Ketu', 3, '12°45', 'Pus3', '--']
+    ];
+    var d1 = RN.map(function (name, i) {
+      var house = ((i - LAGNA + 12) % 12) + 1;
+      return {
+        r: POS[i][0], c: POS[i][1], name: name, house: house,
+        houseColor: house === LENS ? '#F4C542' : (house === 1 ? '#F2A33A' : '#6F6A8A'),
+        bg: house === LENS ? 'rgba(244,197,66,.07)' : (house === 1 ? 'rgba(242,163,58,.08)' : '#12143A'),
+        bodies: D1.filter(function (b) { return b[1] === i; }).map(function (b) {
+          var on = b[0] === sel;
+          return { a: AB[b[0]], retro: b[0] === 'Shani' ? 'R' : '', deg: b[2], nak: b[3], gem: GEM[b[0]],
+            digColor: DIG[b[4]].dot, pick: pick(b[0]), selected: on,
+            ring: on ? '#F2A33A' : 'transparent', bg: on ? 'rgba(242,163,58,.16)' : 'transparent' };
+        })
+      };
+    });
+
+    var mini = function (title, sub, center, lagna, place) {
+      return { title: title, sub: sub, center: center, cells: RN.map(function (name, i) {
+        var list = (place[i] || []);
+        return { r: POS[i][0], c: POS[i][1], bg: i === lagna ? 'rgba(242,163,58,.10)' : '#12143A',
+          bodies: list.map(function (g) { return { a: AB[g], gem: GEM[g], underline: g === sel ? 'underline' : 'none' }; }) };
+      }) };
+    };
+    var minis = [
+      mini('D9 · Navamsa', '· Simha lagna', 'D9', 4, { 0: ['Rahu'], 2: ['Chandra'], 4: ['Lagna', 'Guru'], 5: ['Shukra'], 6: ['Ketu'], 7: ['Budha', 'Shani'], 8: ['Mangala'], 11: ['Surya'] }),
+      mini('D10 · Dasamsa', '· Makara lagna', 'D10', 9, { 0: ['Budha', 'Guru'], 1: ['Shukra'], 3: ['Chandra', 'Ketu'], 4: ['Shani'], 8: ['Surya'], 9: ['Lagna', 'Mangala', 'Rahu'] })
+    ];
+
+    var HEADS = ['D1','D2','D3','D4','D7','D9','D10','D12','D16','D20','D24','D27','D30','D40','D45','D60'];
+    var M = [
+      ['Lagna', 'Kn Si Vs Mi Si Si Mk Mi Mk Dh Ku Vs Mk Mi Mk Tu'],
+      ['Surya', 'Ka:FR Si:OW Mn:FR Me:EX Ka:FR Mn:FR Dh:FR Mi:NE Ka:FR Tu:DB Vs:EN Ku:EN Vc:FR Vc:FR Tu:DB Mn:FR'],
+      ['Chandra', 'Vs:EX Si:FR Kn:FR Vc:DB Mn:NE Mi:FR Ka:OW Dh:NE Vs:EX Dh:NE Kn:FR Vc:DB Mn:NE Tu:NE Vc:DB Mi:FR'],
+      ['Mangala', 'Me:OW Ka:DB Dh:FR Mk:EX Tu:NE Dh:FR Mk:EX Ku:NE Mi:EN Tu:NE Vs:NE Me:OW Tu:NE Me:OW Kn:EN Tu:NE'],
+      ['Budha', 'Si:FR Ka:EN Me:NE Vs:FR Mk:NE Vc:NE Me:NE Mi:OW Kn:EX Me:NE Me:NE Ku:NE Tu:FR Mk:NE Tu:FR Tu:FR'],
+      ['Guru', 'Ka:EX Ka:EX Ka:EX Ka:EX Ku:NE Si:FR Me:FR Kn:EN Mi:EN Ka:EX Vc:FR Mi:EN Kn:EN Vs:EN Dh:OW Mi:EN'],
+      ['Shukra', 'Ka:EN Ka:EN Ka:EN Tu:OW Ku:FR Kn:DB Vs:OW Tu:OW Si:EN Kn:DB Mk:FR Si:EN Kn:DB Si:EN Mn:EX Tu:OW'],
+      ['Shani', 'Dh:NE Ka:EN Si:EN Kn:FR Mi:FR Vc:EN Si:EN Tu:EX Mk:OW Mk:OW Me:DB Mn:NE Tu:EX Ku:OW Mn:NE Me:DB'],
+      ['Rahu', 'Mk Ka Vs Me Kn Me Mk Mi Tu Dh Vs Mi Mn Mn Vc Ku'],
+      ['Ketu', 'Ka Ka Vc Tu Mn Tu Ka Dh Tu Dh Vs Dh Mn Mn Vc Si']
+    ];
+    var matrix = M.map(function (row) {
+      var g = row[0], on = g === sel, strong = 0, weak = 0;
+      var cells = row[1].split(' ').map(function (tok, j) {
+        var p = tok.split(':'), d = p[1] || '--';
+        if (d === 'EX' || d === 'OW') strong++;
+        if (d === 'DB') weak++;
+        return { r: p[0], bg: DIG[d].bg, fg: DIG[d].fg, title: HEADS[j] + ' ' + p[0] + (DIG[d].label ? ' · ' + DIG[d].label : '') };
+      });
+      var hasDig = row[1].indexOf(':') > -1;
+      return { name: g, gem: GEM[g], cells: cells, pick: pick(g), strong: hasDig ? strong : '·', weak: hasDig ? weak : '·',
+        bg: on ? 'rgba(242,163,58,.10)' : 'transparent', ring: on ? '#F2A33A' : 'transparent' };
+    });
+
+    var T = [
+      ['Lagna', 'Kanya 24°44′16″', 'Chitra 1', 'Mangala', '1', '—', '—', '—', '—', '#9A94B3', '#9A94B3'],
+      ['Surya', 'Karka 28°22′30″', 'Ashlesha 4', 'Budha', '11', '12', 'Friend', 'AK', '0.961', '#BFE8D4', '#CFC8DA'],
+      ['Chandra', 'Vrishabha 18°37′58″', 'Rohini 3', 'Chandra', '9', '11', 'Exalted', 'PK', '14.263', '#F7D774', '#CFC8DA'],
+      ['Mangala', 'Mesha 27°28′30″', 'Krittika 1', 'Surya', '8', '3, 8', 'Own sign', 'AmK', '0.577', '#7FE3BC', '#CFC8DA'],
+      ['Budha', 'Simha 25°25′47″', 'P.Phalguni 4', 'Shukra', '12', '1, 10', 'Friend', 'MK', '0.778', '#BFE8D4', '#CFC8DA'],
+      ['Guru', 'Karka 05°36′08″', 'Pushya 1', 'Shani', '11', '4, 7', 'Exalted', 'DK', '0.215', '#F7D774', '#CFC8DA'],
+      ['Shukra', 'Karka 07°49′02″', 'Pushya 2', 'Shani', '11', '2, 9', 'Enemy', 'GK', '1.221', '#F2B3A3', '#CFC8DA'],
+      ['Shani', 'Dhanu 26°08′57″', 'P.Ashadha 4', 'Shukra', '4', '5, 6', 'Neutral', 'BK', '−0.056', '#9A94B3', '#F2917A'],
+      ['Rahu', 'Makara 12°45′17″', 'Shravana 1', 'Chandra', '5', '—', '—', '—', '−0.053', '#9A94B3', '#9A94B3'],
+      ['Ketu', 'Karka 12°45′17″', 'Pushya 3', 'Shani', '11', '—', '—', '—', '−0.053', '#9A94B3', '#9A94B3']
+    ];
+    var table = T.map(function (t) {
+      return { name: t[0], lon: t[1], nak: t[2], nl: t[3], house: t[4], lordOf: t[5], dig: t[6], karaka: t[7], speed: t[8],
+        digColor: t[9], speedColor: t[10], gem: GEM[t[0]], pick: pick(t[0]),
+        bg: t[0] === sel ? 'rgba(242,163,58,.12)' : 'transparent' };
+    });
+
+    var houses = [];
+    for (var h = 1; h <= 12; h++) {
+      var on = h === LENS;
+      houses.push({ n: h, on: on, bg: on ? '#F4C542' : '#0D0F2B', fg: on ? '#1A1206' : '#B9B3C9', ring: on ? '#F4C542' : '#262A5C' });
+    }
+
+    // Time ribbon: x positions in px (Jan 2026 = 150, Jan 2029 = 1840), computed from engine dates
+    var seg = function (label, x, w, bg, fg, title, ring) { return { label: label, x: x, w: Math.max(w - 2, 2), bg: bg, fg: fg, title: title, ring: ring || 'transparent' }; };
+    var tracks = [
+      { label: 'Mahadasha', segs: [seg('Guru mahadasha · Feb 2019 – Feb 2035', 150, 1690, '#F4C542', '#1A1206', 'Guru 2019–2035')] },
+      { label: 'Antardasha', segs: [seg('Ketu', 193.2, 525.8, 'rgba(167,179,107,.55)', '#0B0C24', 'Ketu 29 Jan 2026 – 5 Jan 2027'), seg('Shukra · to Sep 2029', 719, 1121, 'rgba(214,230,255,.55)', '#0B0C24', 'Shukra 5 Jan 2027 – 5 Sep 2029')] },
+      { label: 'Pratyantar', segs: [
+        seg('Ke', 193.2, 30.8, '#2E3270', '#CFC8DA', 'Ketu'), seg('Ve', 224, 87.9, '#2E3270', '#CFC8DA', 'Shukra'), seg('Su', 311.9, 26.2, '#2E3270', '#CFC8DA', 'Surya'),
+        seg('Mo', 338.1, 44.7, '#2E3270', '#CFC8DA', 'Chandra'), seg('Ma', 382.8, 30.9, '#2E3270', '#CFC8DA', 'Mangala'), seg('Ra', 413.7, 78.6, '#2E3270', '#CFC8DA', 'Rahu'),
+        seg('Ju', 492.3, 69.4, '#4A4020', '#F7D774', 'Guru · running to 25 Sep 2026', '#F4C542'), seg('Sa', 561.7, 83.3, '#2E3270', '#CFC8DA', 'Shani'), seg('Me', 645, 74, 'rgba(47,191,138,.35)', '#E9E3D6', 'Budha 18 Nov 2026 – 5 Jan 2027', '#2FBF8A'),
+        seg('Ve', 719, 251.3, '#2E3270', '#CFC8DA', 'Shukra'), seg('Su', 970.3, 74, '#2E3270', '#CFC8DA', 'Surya'), seg('Mo', 1044.3, 126.5, '#2E3270', '#CFC8DA', 'Chandra'),
+        seg('Ma', 1170.8, 86.3, '#2E3270', '#CFC8DA', 'Mangala'), seg('Ra', 1257.1, 225.2, '#2E3270', '#CFC8DA', 'Rahu'), seg('Ju', 1482.3, 200.4, '#2E3270', '#CFC8DA', 'Guru'),
+        seg('Sa', 1682.7, 157.3, '#2E3270', '#CFC8DA', 'Shani')] },
+      { label: 'Shani transit', segs: [seg('Meena', 150, 800.3, 'rgba(75,107,232,.30)', '#C9D3FF', 'Shani in Meena'), seg('Mesha', 950.3, 215.9, 'rgba(75,107,232,.55)', '#FFFFFF', 'Shani in Mesha'), seg('Meena', 1166.2, 194.2, 'rgba(75,107,232,.30)', '#C9D3FF', 'Shani back in Meena'), seg('Mesha', 1360.4, 479.6, 'rgba(75,107,232,.55)', '#FFFFFF', 'Shani in Mesha')] },
+      { label: 'Guru transit', segs: [seg('Mithuna', 150, 235.9, 'rgba(244,197,66,.18)', '#F7D774', 'Guru in Mithuna'), seg('Karka', 385.9, 234.4, 'rgba(244,197,66,.32)', '#F7D774', 'Guru in Karka'), seg('Simha', 620.3, 129.5, 'rgba(244,197,66,.18)', '#F7D774', 'Guru in Simha'), seg('Karka', 749.8, 234.4, 'rgba(244,197,66,.32)', '#F7D774', 'Guru in Karka'), seg('Simha', 984.2, 237.5, 'rgba(244,197,66,.18)', '#F7D774', 'Guru in Simha'), seg('Kanya', 1221.7, 144.9, 'rgba(244,197,66,.32)', '#F7D774', 'Guru in Kanya'), seg('Simha', 1366.6, 228.2, 'rgba(244,197,66,.18)', '#F7D774', 'Guru in Simha'), seg('Kanya', 1594.8, 237.5, 'rgba(244,197,66,.32)', '#F7D774', 'Guru in Kanya')] },
+      { label: 'Rahu transit', segs: [seg('Kumbha', 150, 522.7, 'rgba(203,122,62,.25)', '#F0B98C', 'Rahu in Kumbha'), seg('Makara · over natal Rahu', 672.7, 872.8, 'rgba(203,122,62,.45)', '#FFE2CB', 'Rahu in Makara from 5 Dec 2026'), seg('Dhanu', 1545.5, 294.5, 'rgba(203,122,62,.25)', '#F0B98C', 'Rahu in Dhanu')] },
+      { label: 'Sade Sati', segs: [seg('Sade Sati · phase 1', 950.3, 215.9, 'rgba(226,61,87,.30)', '#FFC2CC', 'Shani 12th from natal Chandra'), seg('Sade Sati · phase 1 resumes', 1360.4, 479.6, 'rgba(226,61,87,.30)', '#FFC2CC', 'Shani 12th from natal Chandra')] }
+    ];
+    tracks.forEach(function (tr, i) {
+      tr.y = 4 + i * 24;
+      tr.segs.forEach(function (s) { s.y = tr.y; });
+    });
+
+    var ticks = [
+      ['Jan 2026', 150], ['Apr', 288.8], ['Jul', 429.1], ['Oct', 571], ['Jan 2027', 712.8], ['Apr', 851.6], ['Jul', 991.9],
+      ['Oct', 1133.8], ['Jan 2028', 1275.6], ['Apr', 1416], ['Jul', 1556.3], ['Oct', 1698.1]
+    ].map(function (t) { return { label: t[0], x: t[1] }; });
+
+    return { d1: d1, minis: minis, vargaHeads: HEADS, matrix: matrix, table: table, houses: houses,
+      tracks: tracks, ticks: ticks, picks: picks };
+  }
+}
+</script>
+</body>
+</html>
